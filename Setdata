@@ -1,0 +1,42 @@
+void Pinjam::setData(){
+	char next;
+	do{
+	ifstream data_buku;
+	data_buku.open("List Buku.txt");
+	string jud, pen, nam, ala, no, kela, baru2, get;
+	
+	cout<<"Masukkan nama : ";
+	getline(cin, nam);
+	cout<<"Masukkan alamat : ";
+	getline(cin, ala);
+	cout<<"Masukkan no HP : ";
+	getline(cin, no);
+	cout<<"Masukkan jenis kelamin : ";
+	getline(cin, kela);
+	cout<<"Masukkan judul buku : ";
+	getline(cin, jud);
+	while(!data_buku.eof()){
+		getline(data_buku, baru2);
+		if(baru2.find(jud)==8){
+			break;
+		}
+		else if( data_buku.eof() && baru2.find(jud)!=8){
+			cout<<"Data tidak ditemukan"<<endl;
+			system("pause");
+			exit(0);
+		}
+	}
+	cout<<"Masukkan penulis buku : ";
+	getline(cin, pen);
+	
+	
+	cout<<"Tambahkan data lagi <y/n> : ";
+	cin>>next;
+	cin.ignore();
+	Pinjam p1(jud, pen, nam, ala, no, kela);
+	system("cls");
+	p1.getscreen();
+	p1.saveFile();
+	} while(next == 'y');
+	
+}
